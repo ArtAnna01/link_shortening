@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import Table from "../components/Table";
 
 function LinkPage() {
   const [linkInput, setLinkInput] = useState("");
@@ -18,8 +19,8 @@ function LinkPage() {
 
   const handleClick = () => {
     navigator.clipboard.writeText(shortenedLink);
-    console.log(shortenedLink);
   };
+
   return (
     <>
       <div>
@@ -49,6 +50,7 @@ function LinkPage() {
           {shortenedLink}
         </div>
       </div>
+      {/* <Table linkInput={this.linkInput} shortenedLink={this.shortenedLink} /> */}
     </>
   );
 }

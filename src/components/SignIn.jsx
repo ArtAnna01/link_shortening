@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -53,12 +53,29 @@ function SignIn() {
         break;
     }
   };
+
+  const handleReg = (e) => {
+    e.preventDefault();
+    fetch(
+      `http://79.143.31.216/register?username=${email}&password=${password}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then(console.log)
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <div>
-        <form className="flex justify-center flex-col m-4">
+        <form>
           {emailDirty && emailError && <div>{emailError}</div>}
           <input
+            className="w-"
             onChange={(e) => emailHandler(e)}
             onBlur={(e) => blurHandler(e)}
             value={email}
@@ -75,7 +92,13 @@ function SignIn() {
             type="password"
             placeholder="Enter your password..."
           />
-          <button disabled={!formValid} type="submit">
+          <button
+            disabled={!formValid}
+            // onClick={(e) => {
+            //   handleAuth(e);
+            // }}
+            // type="submit"
+          >
             Continue
           </button>
         </form>
